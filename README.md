@@ -13,13 +13,55 @@ In order to use the commands for this addin, you will need to include the follow
 In addition, you will need to include the following:
 
 ```csharp
-#addin "Cake.Bumpy"
+#addin Cake.Bumpy
 ```
 
-Afterwards you can start to use the Addin using its aliases, e.g.:
+Afterwards you can start to use the Addin using its [aliases](https://github.com/cake-contrib/Cake.Bumpy/blob/master/Source/Cake.Bumpy/BumpyAliases.cs), e.g.:
 
 ```csharp
 BumpyIncrement(2);
+```
+
+Please read Bumpy's [documentation](https://github.com/fwinkelbauer/Bumpy) to learn more about what each command does.
+
+## Example
+
+The `Example` folder in this repository outlines a simple build script which can be used to increment versions in some files using a `.bumypconfig` file:
+
+```csharp
+#tool Bumpy
+#addin Cake.Bumpy
+
+var target = Argument("target", "Default");
+
+Task("Default")
+    .Does(() =>
+{
+    Information("Bumpy increment:");
+    BumpyIncrement(3);
+});
+
+RunTarget(target);
+```
+
+To see the example in action run:
+
+```powershell
+cd .\Example
+.\build.ps1
+```
+
+Sample output:
+
+```
+========================================
+Default
+========================================
+Executing task: Default
+Bumpy increment:
+\my_version_file1.txt (0): 1.0.0 -> 1.0.1
+\my_version_file2.txt (0): 1.0.0 -> 1.0.1
+Finished executing task: Default
 ```
 
 ## License

@@ -13,11 +13,11 @@
     <summary>Cake Bumpy AddIn</summary>
     <description>Cake AddIn for the version management command line tool Bumpy</description>
     <copyright>Copyright (c) Cake Contributions 2017 - Present</copyright>
-    <tags>Cake, Script, Build, Metrics</tags>
+    <tags>Cake, Script, Versioning, Build, AssemblyInfo, NuSpec</tags>
   </metadata>
   <files>
     <file src="Cake.Bumpy.dll" target="lib\net45" />
     <file src="Cake.Bumpy.pdb" target="lib\net45" />
     <file src="Cake.Bumpy.xml" target="lib\net45" />
-</files>
+  </files>
 </package>
