@@ -23,95 +23,87 @@ namespace Cake.Bumpy
         }
 
         /// <summary>
-        /// Runs "bumpy -l".
+        /// Runs "bumpy list".
         /// </summary>
         public void List()
         {
-            Run("-l");
+            Run("list");
         }
 
         /// <summary>
-        /// Runs "bumpy [profile] -l".
+        /// Runs "bumpy list" with additional settings.
         /// </summary>
-        /// <param name="profile">The profile.</param>
-        public void List(string profile)
+        /// <param name="settings">The tool settings.</param>
+        public void List(BumpySettings settings)
         {
-            Run(profile, "-l");
+            Run(settings, "list");
         }
 
         /// <summary>
-        /// Runs "bumpy -p".
+        /// Runs "bumpy new".
         /// </summary>
-        public void Profiles()
+        public void New()
         {
-            Run("-p");
+            Run("new");
         }
 
         /// <summary>
-        /// Runs "bumpy -c".
-        /// </summary>
-        public void CreateConfiguration()
-        {
-            Run("-c");
-        }
-
-        /// <summary>
-        /// Runs "bumpy -i [position]".
+        /// Runs "bumpy increment [position]".
         /// </summary>
         /// <param name="position">The position.</param>
         public void Increment(int position)
         {
-            Run("-i", $"{position}");
+            Run("increment", $"{position}");
         }
 
         /// <summary>
-        /// Runs "bumpy [profile] -i [position]".
+        /// Runs "bumpy increment [position]" with additional settings.
         /// </summary>
-        /// <param name="profile">The profile.</param>
         /// <param name="position">The position.</param>
-        public void Increment(string profile, int position)
+        /// <param name="settings">The tool settings.</param>
+        public void Increment(int position, BumpySettings settings)
         {
-            Run(profile, "-i", $"{position}");
+            Run(settings, "increment", $"{position}");
         }
 
         /// <summary>
-        /// Runs "bumpy -w [version]".
+        /// Runs "bumpy write [version]".
         /// </summary>
         /// <param name="version">The version.</param>
         public void Write(string version)
         {
-            Run("-w", version);
+            Run("write", version);
         }
 
         /// <summary>
-        /// Runs "bumpy [profile] -w [version]".
+        /// Runs "bumpy write [version] with additional settings".
         /// </summary>
-        /// <param name="profile">The profile.</param>
         /// <param name="version">The version.</param>
-        public void Write(string profile, string version)
+        /// <param name="settings">The tool settings.</param>
+        public void Write(string version, BumpySettings settings)
         {
-            Run(profile, "-w", version);
+            Run(settings, "write", version);
         }
 
         /// <summary>
-        /// Runs "bumpy -a [position] [number]".
+        /// Runs "bumpy assign [position] [number]".
         /// </summary>
         /// <param name="position">The position.</param>
         /// <param name="number">The number.</param>
         public void Assign(int position, int number)
         {
-            Run("-a", $"{position}", $"{number}");
+            Run("assign", $"{position}", $"{number}");
         }
 
         /// <summary>
-        /// Runs "bumpy [profile] -a [position] [number]".
+        /// Runs "bumpy assign [position] [number]" with additional settings.
         /// </summary>
-        /// <param name="profile">The profile.</param>
         /// <param name="position">The position.</param>
         /// <param name="number">The number.</param>
-        public void Assign(string profile, int position, int number)
+        /// <param name="settings">The tool settings.</param>
+        public void Assign(int position, int number, BumpySettings settings)
         {
-            Run(profile, "-a", $"{position}", $"{number}");
+            Run(settings, "assign", $"{position}", $"{number}");
         }
 
         /// <summary>
@@ -134,7 +126,11 @@ namespace Cake.Bumpy
 
         private void Run(params string[] arguments)
         {
-            var settings = new BumpySettings();
+            Run(new BumpySettings(), arguments);
+        }
+
+        private void Run(BumpySettings settings, params string[] arguments)
+        {
             var builder = new ProcessArgumentBuilder();
 
             foreach (var argument in arguments)
@@ -142,7 +138,20 @@ namespace Cake.Bumpy
                 builder.Append(argument);
             }
 
+            AppendOption(builder, "-d", settings.Directory?.FullPath);
+            AppendOption(builder, "-c", settings.Configuration?.FullPath);
+            AppendOption(builder, "-p", settings.Profile);
+
             Run(settings, builder);
+        }
+
+        private void AppendOption(ProcessArgumentBuilder builder, string option, string value)
+        {
+            if (!string.IsNullOrEmpty(value))
+            {
+                builder.Append(option);
+                builder.Append(value);
+            }
         }
     }
 }

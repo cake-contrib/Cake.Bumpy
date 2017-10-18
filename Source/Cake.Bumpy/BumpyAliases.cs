@@ -20,7 +20,7 @@ namespace Cake.Bumpy
     public static class BumpyAliases
     {
         /// <summary>
-        /// Runs "bumpy.exe -l" to list all versions.
+        /// Runs "bumpy.exe list" to list all versions.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <example>
@@ -35,53 +35,38 @@ namespace Cake.Bumpy
         }
 
         /// <summary>
-        /// Runs "bumpy.exe [profile] -l" to list all versions of a profile.
+        /// Runs "bumpy.exe list" to list all versions.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="profile">The profile.</param>
+        /// <param name="settings">The tool settings.</param>
         /// <example>
         /// <code>
-        /// BumpyList("foo");
+        /// BumpyList(new BumpySettings() { Profile = "my_profile" });
         /// </code>
         /// </example>
         [CakeMethodAlias]
-        public static void BumpyList(this ICakeContext context, string profile)
+        public static void BumpyList(this ICakeContext context, BumpySettings settings)
         {
-            CreateRunner(context).List(profile);
+            CreateRunner(context).List(settings);
         }
 
         /// <summary>
-        /// Runs "bumpy.exe -p" to list all the profiles.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <example>
-        /// <code>
-        /// BumpyProfiles();
-        /// </code>
-        /// </example>
-        [CakeMethodAlias]
-        public static void BumpyProfiles(this ICakeContext context)
-        {
-            CreateRunner(context).Profiles();
-        }
-
-        /// <summary>
-        /// Runs "bumpy.exe -c" to create a configuration file if one does not exist.
+        /// Runs "bumpy.exe new" to create a new configuration file if one does not exist.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <example>
         /// <code>
-        /// BumpyCreateConfiguration();
+        /// BumpyNew();
         /// </code>
         /// </example>
         [CakeMethodAlias]
-        public static void BumpyCreateConfiguration(this ICakeContext context)
+        public static void BumpyNew(this ICakeContext context)
         {
-            CreateRunner(context).CreateConfiguration();
+            CreateRunner(context).New();
         }
 
         /// <summary>
-        /// Runs "bumpy.exe -i [position]" to increment all versions at the given position by one.
+        /// Runs "bumpy.exe increment [position]" to increment all versions at the given position by one.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="position">The position.</param>
@@ -98,25 +83,25 @@ namespace Cake.Bumpy
         }
 
         /// <summary>
-        /// Runs "bumpy.exe [profile] -i [position]" to increment all versions of a profile at the given position by one.
+        /// Runs "bumpy.exe increment [position]" to increment all versions at the given position by one.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="profile">The profile.</param>
         /// <param name="position">The position.</param>
+        /// <param name="settings">The tool settings.</param>
         /// <example>
         /// <code>
         /// // e.g. 1.0.0.0 -> 1.1.0.0
-        /// BumpyIncrement("foo", 2);
+        /// BumpyIncrement(2, new BumpySettings() { Profile = "my_profile" });
         /// </code>
         /// </example>
         [CakeMethodAlias]
-        public static void BumpyIncrement(this ICakeContext context, string profile, int position)
+        public static void BumpyIncrement(this ICakeContext context, int position, BumpySettings settings)
         {
-            CreateRunner(context).Increment(profile, position);
+            CreateRunner(context).Increment(position, settings);
         }
 
         /// <summary>
-        /// Runs "bumpy.exe -w [version]" to overwrite all versions.
+        /// Runs "bumpy.exe write [version]" to overwrite all versions.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="version">The version.</param>
@@ -133,25 +118,25 @@ namespace Cake.Bumpy
         }
 
         /// <summary>
-        /// Runs "bumpy.exe [profile] -w [version]" to overwrite all versions of a profile.
+        /// Runs "bumpy.exe write [version]" to overwrite all versions.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="profile">The profile.</param>
         /// <param name="version">The version.</param>
+        /// <param name="settings">The tool settings.</param>
         /// <example>
         /// <code>
         /// // e.g. 1.0.0.0 -> 2.10.0.0
-        /// BumpyVersion("foo", "2.10.0.0");
+        /// BumpyVersion("2.10.0.0", new BumpySettings() { Profile = "my_profile" });
         /// </code>
         /// </example>
         [CakeMethodAlias]
-        public static void BumpyWrite(this ICakeContext context, string profile, string version)
+        public static void BumpyWrite(this ICakeContext context, string version, BumpySettings settings)
         {
-            CreateRunner(context).Write(profile, version);
+            CreateRunner(context).Write(version, settings);
         }
 
         /// <summary>
-        /// Runs "bumpy.exe -a [position] [number]" to assign a given position with a given number for all versions.
+        /// Runs "bumpy.exe assign [position] [number]" to assign a given position with a given number for all versions.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="position">The position.</param>
@@ -169,22 +154,22 @@ namespace Cake.Bumpy
         }
 
         /// <summary>
-        /// Runs "bumpy.exe [profile] -a [position] [number]" to assign a given position with a given number for all versions of a profile.
+        /// Runs "bumpy.exe assign [position] [number]" to assign a given position with a given number for all versions.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="profile">The profile.</param>
         /// <param name="position">The position.</param>
         /// <param name="number">The version number part.</param>
+        /// <param name="settings">The tool settings.</param>
         /// <example>
         /// <code>
         /// // e.g. 1.0.0.0 -> 1.42.0.0
-        /// BumpyAssign("foo", 2, 42);
+        /// BumpyAssign(2, 42, new BumpySettings() { Profile = "my_profile" });
         /// </code>
         /// </example>
         [CakeMethodAlias]
-        public static void BumpyAssign(this ICakeContext context, string profile, int position, int number)
+        public static void BumpyAssign(this ICakeContext context, int position, int number, BumpySettings settings)
         {
-            CreateRunner(context).Assign(profile, position, number);
+            CreateRunner(context).Assign(position, number, settings);
         }
 
         private static BumpyRunner CreateRunner(ICakeContext context)
