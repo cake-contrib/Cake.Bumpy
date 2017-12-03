@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cake.Core;
 using Cake.Core.IO;
+using Cake.Core.IO.Arguments;
 using Cake.Core.Tooling;
 
 namespace Cake.Bumpy
@@ -138,8 +139,8 @@ namespace Cake.Bumpy
                 builder.Append(argument);
             }
 
-            AppendOption(builder, "-d", settings.Directory?.FullPath);
-            AppendOption(builder, "-c", settings.Configuration?.FullPath);
+            AppendOption(builder, "-d", new QuotedArgument(new TextArgument(settings.Directory?.FullPath)).Render());
+            AppendOption(builder, "-c", new QuotedArgument(new TextArgument(settings.Configuration?.FullPath)).Render());
             AppendOption(builder, "-p", settings.Profile);
 
             Run(settings, builder);
