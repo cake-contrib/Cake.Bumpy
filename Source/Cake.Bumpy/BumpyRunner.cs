@@ -139,8 +139,8 @@ namespace Cake.Bumpy
                 builder.Append(argument);
             }
 
-            AppendOption(builder, "-d", new QuotedArgument(new TextArgument(settings.Directory?.FullPath)).Render());
-            AppendOption(builder, "-c", new QuotedArgument(new TextArgument(settings.Configuration?.FullPath)).Render());
+            AppendOption(builder, "-d", settings.Directory?.FullPath);
+            AppendOption(builder, "-c", settings.Configuration?.FullPath);
             AppendOption(builder, "-p", settings.Profile);
 
             Run(settings, builder);
@@ -151,7 +151,7 @@ namespace Cake.Bumpy
             if (!string.IsNullOrEmpty(value))
             {
                 builder.Append(option);
-                builder.Append(value);
+                builder.Append(new QuotedArgument(new TextArgument(value)).Render());
             }
         }
     }
