@@ -72,7 +72,7 @@ namespace Cake.Bumpy
         /// <param name="position">The position.</param>
         /// <example>
         /// <code>
-        /// // e.g. 1.0.0.0 -> 1.1.0.0
+        /// // e.g. 1.0.3.0 -> 1.1.0.0
         /// BumpyIncrement(2);
         /// </code>
         /// </example>
@@ -90,7 +90,7 @@ namespace Cake.Bumpy
         /// <param name="settings">The tool settings.</param>
         /// <example>
         /// <code>
-        /// // e.g. 1.0.0.0 -> 1.1.0.0
+        /// // e.g. 1.0.3.0 -> 1.1.0.0
         /// BumpyIncrement(2, new BumpySettings() { Profile = "my_profile" });
         /// </code>
         /// </example>
@@ -98,6 +98,41 @@ namespace Cake.Bumpy
         public static void BumpyIncrement(this ICakeContext context, int position, BumpySettings settings)
         {
             CreateRunner(context).Increment(position, settings);
+        }
+
+        /// <summary>
+        /// Runs "bumpy.exe incrementonly [position]" to increment all versions at the given position by one, without updating following components.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="position">The position.</param>
+        /// <example>
+        /// <code>
+        /// // e.g. 1.0.3.0 -> 1.1.3.0
+        /// BumpyIncrementOnly(2);
+        /// </code>
+        /// </example>
+        [CakeMethodAlias]
+        public static void BumpyIncrementOnly(this ICakeContext context, int position)
+        {
+            CreateRunner(context).IncrementOnly(position);
+        }
+
+        /// <summary>
+        /// Runs "bumpy.exe incrementonly [position]" to increment all versions at the given position by one, without updating following components.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="position">The position.</param>
+        /// <param name="settings">The tool settings.</param>
+        /// <example>
+        /// <code>
+        /// // e.g. 1.0.3.0 -> 1.1.3.0
+        /// BumpyIncrementOnly(2, new BumpySettings() { Profile = "my_profile" });
+        /// </code>
+        /// </example>
+        [CakeMethodAlias]
+        public static void BumpyIncrementOnly(this ICakeContext context, int position, BumpySettings settings)
+        {
+            CreateRunner(context).IncrementOnly(position, settings);
         }
 
         /// <summary>
