@@ -68,6 +68,25 @@ namespace Cake.Bumpy
         }
 
         /// <summary>
+        /// Runs "bumpy incrementonly [position]" with additional settings.
+        /// </summary>
+        /// <param name="position">The position.</param>
+        /// <param name="settings">The tool settings.</param>
+        public void IncrementOnly(int position, BumpySettings settings)
+        {
+            Run(settings, "incrementonly", $"{position}");
+        }
+
+        /// <summary>
+        /// Runs "bumpy incrementonly [position]".
+        /// </summary>
+        /// <param name="position">The position.</param>
+        public void IncrementOnly(int position)
+        {
+            Run("incrementonly", $"{position}");
+        }
+
+        /// <summary>
         /// Runs "bumpy write [version]".
         /// </summary>
         /// <param name="version">The version.</param>
