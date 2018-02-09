@@ -132,7 +132,7 @@ namespace Cake.Bumpy
         /// <param name="text">The postfix version text.</param>
         public void Label(string text)
         {
-            Run("label", text);
+            Label(text, new BumpySettings());
         }
 
         /// <summary>
@@ -142,6 +142,12 @@ namespace Cake.Bumpy
         /// <param name="settings">The tool settings.</param>
         public void Label(string text, BumpySettings settings)
         {
+            // Simulates the command 'bumpy label ""'
+            if (string.IsNullOrEmpty(text))
+            {
+                text = "\"\"";
+            }
+
             Run(settings, "label", text);
         }
 
