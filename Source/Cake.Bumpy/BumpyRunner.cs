@@ -127,6 +127,25 @@ namespace Cake.Bumpy
         }
 
         /// <summary>
+        /// Runs "bumpy label [text]".
+        /// </summary>
+        /// <param name="text">The postfix version text.</param>
+        public void Label(string text)
+        {
+            Run("label", text);
+        }
+
+        /// <summary>
+        /// Runs "bumpy label [text]" with additional settings.
+        /// </summary>
+        /// <param name="text">The postfix version text.</param>
+        /// <param name="settings">The tool settings.</param>
+        public void Label(string text, BumpySettings settings)
+        {
+            Run(settings, "label", text);
+        }
+
+        /// <summary>
         /// Gets the name of the tool executable.
         /// </summary>
         /// <returns>The tool executable name.</returns>

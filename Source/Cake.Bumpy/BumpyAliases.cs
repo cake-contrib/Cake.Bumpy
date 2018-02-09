@@ -207,6 +207,41 @@ namespace Cake.Bumpy
             CreateRunner(context).Assign(position, number, settings);
         }
 
+        /// <summary>
+        /// Runs "bumpy.exe label [text]" to replace the postfix text of a version.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="text">The postfix version text.</param>
+        /// <example>
+        /// <code>
+        /// // e.g. 1.0.0-alpha -> 1.0.0-beta
+        /// BumpyLabel("-beta");
+        /// </code>
+        /// </example>
+        [CakeMethodAlias]
+        public static void BumpyLabel(this ICakeContext context, string text)
+        {
+            CreateRunner(context).Label(text);
+        }
+
+        /// <summary>
+        /// Runs "bumpy.exe label [text]" to replace the postfix text of a version.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="text">The postfix version text.</param>
+        /// <param name="settings">The tool settings.</param>
+        /// <example>
+        /// <code>
+        /// // e.g. 1.0.0-alpha -> 1.0.0-beta
+        /// BumpyLabel("-beta", new BumpySettings() { Profile = "my_profile" });
+        /// </code>
+        /// </example>
+        [CakeMethodAlias]
+        public static void BumpyLabel(this ICakeContext context, string text, BumpySettings settings)
+        {
+            CreateRunner(context).Label(text, settings);
+        }
+
         private static BumpyRunner CreateRunner(ICakeContext context)
         {
             return new BumpyRunner(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools);

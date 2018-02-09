@@ -1,1 +1,1 @@
-my_version_file*.txt = (?<version>\d+\.\d+\.\d+)
+my_version_file*.txt = (?<version>\d+\.\d+\.\d+.*)
