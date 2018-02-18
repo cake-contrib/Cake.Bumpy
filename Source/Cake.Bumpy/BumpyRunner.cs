@@ -187,6 +187,11 @@ namespace Cake.Bumpy
             AppendOption(builder, "-c", settings.Configuration?.FullPath);
             AppendOption(builder, "-p", settings.Profile);
 
+            if (settings.NoOperation)
+            {
+                builder.Append("-n");
+            }
+
             Run(settings, builder);
         }
 

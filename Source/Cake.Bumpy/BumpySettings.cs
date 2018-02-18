@@ -21,6 +21,12 @@ namespace Cake.Bumpy
         public FilePath Configuration { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether no-operation (preview) mode should be used.
+        /// </summary>
+        /// <value>True if no-operation (preview) mode should be used, else false</value>
+        public bool NoOperation { get; set; }
+
+        /// <summary>
         /// Gets or sets the profile Bumpy will use.
         /// </summary>
         /// <value>A profile name.</value>
