@@ -31,7 +31,7 @@ namespace Cake.Bumpy
         [CakeMethodAlias]
         public static void BumpyList(this ICakeContext context)
         {
-            CreateRunner(context).List();
+            BumpyList(context, new BumpySettings());
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Cake.Bumpy
         [CakeMethodAlias]
         public static void BumpyIncrement(this ICakeContext context, int position)
         {
-            CreateRunner(context).Increment(position);
+            BumpyIncrement(context, position, new BumpySettings());
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Cake.Bumpy
         [CakeMethodAlias]
         public static void BumpyIncrementOnly(this ICakeContext context, int position)
         {
-            CreateRunner(context).IncrementOnly(position);
+            BumpyIncrementOnly(context, position, new BumpySettings());
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace Cake.Bumpy
         [CakeMethodAlias]
         public static void BumpyWrite(this ICakeContext context, string version)
         {
-            CreateRunner(context).Write(version);
+            BumpyWrite(context, version, new BumpySettings());
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Cake.Bumpy
         [CakeMethodAlias]
         public static void BumpyAssign(this ICakeContext context, int position, int number)
         {
-            CreateRunner(context).Assign(position, number);
+            BumpyAssign(context, position, number, new BumpySettings());
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace Cake.Bumpy
         [CakeMethodAlias]
         public static void BumpyLabel(this ICakeContext context, string text)
         {
-            CreateRunner(context).Label(text);
+            BumpyLabel(context, text, new BumpySettings());
         }
 
         /// <summary>
@@ -240,6 +240,39 @@ namespace Cake.Bumpy
         public static void BumpyLabel(this ICakeContext context, string text, BumpySettings settings)
         {
             CreateRunner(context).Label(text, settings);
+        }
+
+        /// <summary>
+        /// Runs "bumpy.exe ensure" to check if all versions in a profile are equal.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <example>
+        /// <code>
+        /// BumpyEnsure();
+        /// // e.g. will fail if "bumpy list" would show different versions such as 1.1.0 and 1.2.0
+        /// </code>
+        /// </example>
+        [CakeMethodAlias]
+        public static void BumpyEnsure(this ICakeContext context)
+        {
+            BumpyEnsure(context, new BumpySettings());
+        }
+
+        /// <summary>
+        /// Runs "bumpy.exe ensure" to check if all versions in a profile are equal.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="settings">The tool settings.</param>
+        /// <example>
+        /// <code>
+        /// // e.g. will fail if "bumpy list" would show different versions such as 1.1.0 and 1.2.0
+        /// BumpyEnsure();
+        /// </code>
+        /// </example>
+        [CakeMethodAlias]
+        public static void BumpyEnsure(this ICakeContext context, BumpySettings settings)
+        {
+            CreateRunner(context).Ensure(settings);
         }
 
         private static BumpyRunner CreateRunner(ICakeContext context)

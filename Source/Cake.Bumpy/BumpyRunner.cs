@@ -26,14 +26,6 @@ namespace Cake.Bumpy
         /// <summary>
         /// Runs "bumpy list".
         /// </summary>
-        public void List()
-        {
-            Run("list");
-        }
-
-        /// <summary>
-        /// Runs "bumpy list" with additional settings.
-        /// </summary>
         /// <param name="settings">The tool settings.</param>
         public void List(BumpySettings settings)
         {
@@ -45,20 +37,11 @@ namespace Cake.Bumpy
         /// </summary>
         public void New()
         {
-            Run("new");
+            Run(new BumpySettings(), "new");
         }
 
         /// <summary>
         /// Runs "bumpy increment [position]".
-        /// </summary>
-        /// <param name="position">The position.</param>
-        public void Increment(int position)
-        {
-            Run("increment", $"{position}");
-        }
-
-        /// <summary>
-        /// Runs "bumpy increment [position]" with additional settings.
         /// </summary>
         /// <param name="position">The position.</param>
         /// <param name="settings">The tool settings.</param>
@@ -68,7 +51,7 @@ namespace Cake.Bumpy
         }
 
         /// <summary>
-        /// Runs "bumpy incrementonly [position]" with additional settings.
+        /// Runs "bumpy incrementonly [position]".
         /// </summary>
         /// <param name="position">The position.</param>
         /// <param name="settings">The tool settings.</param>
@@ -78,25 +61,7 @@ namespace Cake.Bumpy
         }
 
         /// <summary>
-        /// Runs "bumpy incrementonly [position]".
-        /// </summary>
-        /// <param name="position">The position.</param>
-        public void IncrementOnly(int position)
-        {
-            Run("incrementonly", $"{position}");
-        }
-
-        /// <summary>
         /// Runs "bumpy write [version]".
-        /// </summary>
-        /// <param name="version">The version.</param>
-        public void Write(string version)
-        {
-            Run("write", version);
-        }
-
-        /// <summary>
-        /// Runs "bumpy write [version] with additional settings".
         /// </summary>
         /// <param name="version">The version.</param>
         /// <param name="settings">The tool settings.</param>
@@ -106,17 +71,7 @@ namespace Cake.Bumpy
         }
 
         /// <summary>
-        /// Runs "bumpy assign [position] [number]".
-        /// </summary>
-        /// <param name="position">The position.</param>
-        /// <param name="number">The number.</param>
-        public void Assign(int position, int number)
-        {
-            Run("assign", $"{position}", $"{number}");
-        }
-
-        /// <summary>
-        /// Runs "bumpy assign [position] [number]" with additional settings.
+        /// Runs "bumpy assign [position] [number]"
         /// </summary>
         /// <param name="position">The position.</param>
         /// <param name="number">The number.</param>
@@ -130,15 +85,6 @@ namespace Cake.Bumpy
         /// Runs "bumpy label [text]".
         /// </summary>
         /// <param name="text">The postfix version text.</param>
-        public void Label(string text)
-        {
-            Label(text, new BumpySettings());
-        }
-
-        /// <summary>
-        /// Runs "bumpy label [text]" with additional settings.
-        /// </summary>
-        /// <param name="text">The postfix version text.</param>
         /// <param name="settings">The tool settings.</param>
         public void Label(string text, BumpySettings settings)
         {
@@ -149,6 +95,15 @@ namespace Cake.Bumpy
             }
 
             Run(settings, "label", text);
+        }
+
+        /// <summary>
+        /// Runs "bumpy ensure".
+        /// </summary>
+        /// <param name="settings">The tool settings.</param>
+        public void Ensure(BumpySettings settings)
+        {
+            Run(settings, "ensure");
         }
 
         /// <summary>
@@ -167,11 +122,6 @@ namespace Cake.Bumpy
         protected override string GetToolName()
         {
             return "Bumpy";
-        }
-
-        private void Run(params string[] arguments)
-        {
-            Run(new BumpySettings(), arguments);
         }
 
         private void Run(BumpySettings settings, params string[] arguments)
