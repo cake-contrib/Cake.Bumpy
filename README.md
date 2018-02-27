@@ -16,13 +16,13 @@ In addition, you will need to include the following:
 #addin Cake.Bumpy
 ```
 
-Afterwards you can start to use the Addin using its [aliases](https://github.com/cake-contrib/Cake.Bumpy/blob/master/Source/Cake.Bumpy/BumpyAliases.cs), e.g.:
+Afterwards you can start to use the Addin, e.g.:
 
 ```csharp
 BumpyIncrement(2);
 ```
 
-Please read Bumpy's [documentation](https://github.com/fwinkelbauer/Bumpy) to learn more about what each command does.
+You can learn more about using Bumpy and the Addin from the respective documentation [here](https://github.com/fwinkelbauer/Bumpy) and [here](https://cakebuild.net/dsl/bumpy/).
 
 ## Example
 
