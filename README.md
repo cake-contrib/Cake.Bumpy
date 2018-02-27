@@ -22,7 +22,7 @@ Afterwards you can start to use the Addin, e.g.:
 BumpyIncrement(2);
 ```
 
-You can learn more about using Bumpy and the Addin from the respective documentation [here](https://github.com/fwinkelbauer/Bumpy) and [here](https://cakebuild.net/dsl/bumpy/).
+You can learn more about using Bumpy and the Addin from their respective documentation [here](https://github.com/fwinkelbauer/Bumpy) and [here](https://cakebuild.net/dsl/bumpy/).
 
 ## Example
 
