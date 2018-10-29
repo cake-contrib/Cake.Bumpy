@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{D3D8BD1D-B9DA-4209-94BE-2530E2A01E93}</ProjectGuid>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -25,7 +25,7 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Cake.Core" Version="0.30.0">
+    <PackageReference Include="Cake.Core" Version="0.28.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2">
