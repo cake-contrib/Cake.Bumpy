@@ -3,20 +3,10 @@
     <ProjectGuid>{D3D8BD1D-B9DA-4209-94BE-2530E2A01E93}</ProjectGuid>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyTitle>Cake.Bumpy</AssemblyTitle>
-    <Summary>Cake Bumpy AddIn</Summary>
-    <Copyright>Copyright (c) Cake Contributions 2017 - Present</Copyright>
     <DocumentationFile>bin\$(Configuration)\Cake.Bumpy.xml</DocumentationFile>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\Cake.Bumpy.ruleset</CodeAnalysisRuleSet>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.0</Version>
-    <Authors>fwinkelbauer</Authors>
-    <Description>Cake AddIn for the version management command line tool Bumpy</Description>
-    <PackageLicenseUrl>https://github.com/cake-contrib/Cake.Bumpy/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/cake-contrib/Cake.Bumpy</PackageProjectUrl>
-    <PackageIconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</PackageIconUrl>
-    <PackageTags>Cake, Script, Versioning, Build, AssemblyInfo, NuSpec</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
