@@ -9,7 +9,8 @@ BuildParameters.SetParameters(context: Context,
                             repositoryOwner: "cake-contrib",
                             repositoryName: "Cake.Bumpy",
                             appVeyorAccountName: "cakecontrib",
-                            shouldRunDupFinder: false);
+                            shouldRunDupFinder: false,
+                            shouldRunGitVersion: true);
 
 BuildParameters.PrintParameters(Context);
 
